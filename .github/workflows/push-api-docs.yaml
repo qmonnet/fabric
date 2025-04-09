@@ -26,18 +26,18 @@ jobs:
         uses: "actions/checkout@v4"
         with:
           repository: "qmonnet/hhdocs"
-          path: "/documentation"
+          path: "project_documentation"
           persist-credentials: "false"
 
       - name: "Copy API reference from 'fabric' to 'docs'"
         run: |
-          cp docs/api.md /documentation/docs/reference/api.md
+          cp docs/api.md project_documentation/docs/reference/api.md
 
       - name: "Create Pull Request"
         uses: "peter-evans/create-pull-request@v5"
         with:
           token: "${{ secrets.DOCS_API_REF_UPDTATE_TOKEN }}"
-          path: "/documentation"
+          path: "project_documentation"
           commit-message: |
             Update API reference from ${{ github.repository }} tag ${{ github.ref_name }}.
 
